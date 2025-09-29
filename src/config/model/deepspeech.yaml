@@ -1,0 +1,6 @@
+_target_: src.model.deepspeech.DeepSpeechLike
+n_feats: 80
+n_tokens: 29
+hidden_size: 512
+rnn_layers: 5
+dropout: 0.1

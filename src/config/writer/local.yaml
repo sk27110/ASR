@@ -1,0 +1,6 @@
+_target_: src.logger.local_writer.LocalWriter
+save_dir: "experiments"
+run_name: "local_experiment"
+loss_names: ["loss"]
+log_checkpoints: false
+id_length: 8

@@ -1,0 +1,23 @@
+train:
+  _target_: src.dataset.librispeech_dataset.LibrispeechDataset
+  part: "dev-clean"
+  target_sr: 16000
+  n_mels: 80
+  win_length: 400
+  hop_length: 160
+  n_fft: 512
+  f_min: 0.0
+  f_max: 8000.0
+  limit: 100
+
+val:
+  _target_: src.dataset.librispeech_dataset.LibrispeechDataset
+  part: "dev-clean"
+  target_sr: 16000
+  n_mels: 80
+  win_length: 400
+  hop_length: 160
+  n_fft: 512
+  f_min: 0.0
+  f_max: 8000.0
+  limit: 50

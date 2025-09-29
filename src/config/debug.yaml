@@ -1,0 +1,9 @@
+defaults:
+  - main
+  - datasets: debug
+  - writer: local
+
+trainer:
+  n_epochs: 2
+  epoch_len: 10
+  save_dir: "debug_checkpoints"

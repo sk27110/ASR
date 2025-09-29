@@ -1,0 +1,39 @@
+defaults:
+  - model: deepspeech
+  - datasets: librispeech
+  - dataloader: default
+  - metrics: default
+  - optimizer: adamw
+  - scheduler: onecycle
+  - writer: wandb  # ← это должно быть здесь
+  - _self_
+
+text_encoder:
+  _target_: src.text_encoder.ctc_text_encoder.CTCTextEncoder
+
+loss_function:
+  _target_: src.loss.ctc_loss.CTCLossWrapper
+  blank: 0
+  zero_infinity: true
+
+# Добавьте секцию writer если ее нет
+writer:
+  _target_: src.logger.wandb_writer.WandBWriter
+  project_name: "asr_deepspeech"
+  run_name: "experiment_1"
+  mode: "online"
+
+trainer:
+  _target_: src.trainer.trainer.Trainer
+  log_step: 50
+  n_epochs: 100
+  epoch_len: 1000
+  device_tensors: ["spectrogram", "text_encoded", "spectrogram_lengths"]
+  device: "cuda"
+  override: false
+  monitor: "min val_WER"
+  save_period: 5
+  early_stop: 20
+  save_dir: "checkpoints"
+  seed: 42
+  max_grad_norm: 1.0

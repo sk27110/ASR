@@ -1,0 +1,25 @@
+train:
+  - _target_: src.metrics.wer_metric.ArgmaxWER
+    name: "train_WER"
+    text_encoder: ${text_encoder}
+    blank: 0
+
+inference:
+  - _target_: src.metrics.wer_metric.ArgmaxWER
+    name: "val_WER"
+    text_encoder: ${text_encoder}
+    blank: 0
+  - _target_: src.metrics.wer_metric.BeamWER
+    name: "val_BeamWER"
+    text_encoder: ${text_encoder}
+    beam_width: 8
+    blank: 0
+  - _target_: src.metrics.cer_metric.ArgmaxCER
+    name: "val_CER"
+    text_encoder: ${text_encoder}
+    blank: 0
+  - _target_: src.metrics.cer_metric.BeamCER
+    name: "val_BeamCER"
+    text_encoder: ${text_encoder}
+    beam_width: 8
+    blank: 0

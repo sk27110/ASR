@@ -1,0 +1,15 @@
+train:
+  spectrogram:
+    _target_: torch.nn.Sequential
+    _args_:
+      - _target_: src.transforms.normalize.SpectrogramNormalize
+        mean: -20.0
+        std: 5.0
+
+inference:
+  spectrogram:
+    _target_: torch.nn.Sequential
+    _args_:
+      - _target_: src.transforms.normalize.SpectrogramNormalize
+        mean: -20.0
+        std: 5.0
